@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile in the application",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "role": { "type": "string" },
+        "points": { "type": "number" },
+        "level": { "type": "number" },
+        "badges": { "type": "array" },
+        "bio": { "type": "string" },
+        "profilePicture": { "type": "string" },
+        "reportsCount": { "type": "number" },
+        "verificationsCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "Issue": {
+      "title": "Issue",
+      "description": "A community reported civic issue",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "severity": { "type": "string" },
+        "urgency": { "type": "string" },
+        "department": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "reporterName": { "type": "string" },
+        "reporterAnonymous": { "type": "boolean" },
+        "pinCode": { "type": "string" },
+        "votesCount": { "type": "number" },
+        "communityVerified": { "type": "boolean" },
+        "trustScore": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "description", "category", "reporterId", "status"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User comment on a reported issue",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "issueId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "issueId", "userId", "content", "createdAt"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Official authority announcement",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "authorName": { "type": "string" },
+        "date": { "type": "string" },
+        "importance": { "type": "string" }
+      },
+      "required": ["id", "title", "content", "authorName", "date", "importance"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "System or admin activity audit log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "userId", "action", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Registered app users"
+    },
+    "/issues/{issueId}": {
+      "schema": "Issue",
+      "description": "Civic issues posted by citizens"
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments on civic issues"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "Official administrative announcements"
+    },
+    "/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Administrative actions audit trail"
+    }
+  }
+}
